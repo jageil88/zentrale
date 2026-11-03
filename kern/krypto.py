@@ -1,7 +1,7 @@
 """Verschlüsselung der Zentrale.
 
 Datei = b"ZEN1" + IV (12 Byte) + AES-256-GCM-Chiffrat mit Tag am Ende – genau das,
-was WebCrypto im Browser entschlüsselt. Der Schlüssel kommt per PBKDF2 aus Leons Passwort.
+was WebCrypto im Browser entschlüsselt. Der Schlüssel kommt per PBKDF2 aus dem Passwort.
 """
 import base64
 import hashlib

@@ -1,5 +1,5 @@
 // Der 4-Sekunden-Aufbau: Jedes Diagramm baut sich auf, sobald es zur Hälfte sichtbar wird – jedes Mal neu.
-// Antippen überspringt. Leon wollte ihn ausdrücklich, darum läuft er auch, wenn das Gerät „Animationen aus“
+// Antippen überspringt. Er ist ausdrücklich gewünscht, darum läuft er auch, wenn das Gerät „Animationen aus“
 // meldet; unter System lässt er sich pro Gerät abschalten (dann sofort das fertige Bild).
 export const easeOut = (p) => 1 - (1 - p) ** 3;
 

@@ -1,5 +1,5 @@
 // Entschlüsselt die .enc-Dateien der Zentrale: "ZEN1" + IV (12 Byte) + AES-256-GCM mit Tag am Ende.
-// Der Schlüssel entsteht per PBKDF2 aus Leons Passwort und verlässt den Browser nie.
+// Der Schlüssel entsteht per PBKDF2 aus dem Passwort und verlässt den Browser nie.
 const MAGIC = [90, 69, 78, 49]; // "ZEN1"
 
 const ausBase64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));

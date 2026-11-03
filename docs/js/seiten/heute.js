@@ -79,7 +79,7 @@ export const heute = {
           <span class="status ${esc(v.status)}">${esc(STATUS[v.status] ?? v.status)}</span>
           <div class="panel schritt">${naechsterSchritt(v, a)}</div>
           <div class="knoepfe"><button class="haupt" type="button" data-kopieren>Text kopieren</button>
-            <a class="knopf" data-mp4 hidden download="durchgespielt-${nr}.mp4">MP4 speichern</a></div>
+            <a class="knopf" data-mp4 hidden download="video-${nr}.mp4">MP4 speichern</a></div>
           ${k.modus === "pc" ? pcKnoepfe(v, a) : nurAmPc}
           <div class="panel"><h3>Text zum Einfügen</h3><p class="beschreibung">${esc(textZumEinfuegen(v))}</p></div>
           ${v.quellen?.length ? `<details class="panel"><summary>Quellen</summary><ul>${v.quellen.map((q) => `<li>${quelle(q)}</li>`).join("")}</ul></details>` : ""}

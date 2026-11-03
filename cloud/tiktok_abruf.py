@@ -1,4 +1,4 @@
-"""TikTok-Zahlen aus der Cloud: läuft per GitHub Actions alle 3 Stunden, auch wenn Leons PC aus ist.
+"""TikTok-Zahlen aus der Cloud: läuft per GitHub Actions alle 3 Stunden, auch wenn der PC aus ist.
 
 Liest den verschlüsselten Stand vom Branch daten-tiktok-cloud, holt fällige Zahlen über Apify (nie über
 4 $ im Monat), ordnet gepostete Videos zu und ersetzt den Branch. Passt der Schlüssel nicht, wird nichts
