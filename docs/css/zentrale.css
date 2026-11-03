@@ -1,0 +1,128 @@
+/* Zentrale „Spielstand“: dunkles Violett, Cyan für Fortschritt, Pink für Level und Erfolge. */
+:root {
+  --nacht: #17112B;
+  --flaeche: #241A45;
+  --flaeche-2: #2C2154;
+  --tief: #120C24;
+  --linie: #3A2E66;
+  --text: #F3EEFF;
+  --text-2: #A79BC9;
+  --xp: #3DD9FF;
+  --level: #FF5C8A;
+  --level-tief: #3A0C1C;
+  --hoch: #04AD84;
+  --runter: #D22F28;
+  --gefahr: #FF8A7A;
+  --display: "Chakra Petch", system-ui, sans-serif;
+  --body: "Atkinson Hyperlegible", system-ui, sans-serif;
+  --ecke: 10px;
+  --nav-h: 64px;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--nacht); color-scheme: dark; }
+body {
+  margin: 0; min-height: 100vh; background: var(--nacht); color: var(--text);
+  font: 400 17px/1.55 var(--body); -webkit-text-size-adjust: 100%;
+}
+a { color: var(--xp); }
+:focus-visible { outline: 3px solid var(--xp); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.15; margin: 0 0 .5em; letter-spacing: .01em; }
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.3rem; margin-top: 1.6em; }
+h3 { font-size: 1.05rem; }
+p { margin: 0 0 .8em; max-width: 65ch; }
+.leise { color: var(--text-2); }
+.zahl, .wert { font-family: var(--display); font-variant-numeric: tabular-nums lining-nums; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* Kopf und Navigation: am Handy unten, ab 900 px oben */
+.kopf {
+  position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 20px;
+  padding: 12px 20px calc(12px); background: var(--nacht); border-bottom: 1px solid var(--linie);
+}
+.marke { font: 700 1.2rem var(--display); color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+.marke::before { content: ""; width: 12px; height: 12px; background: var(--level); clip-path: polygon(0 0, 100% 0, 100% 60%, 60% 100%, 0 100%); }
+.kopf .rechts { margin-left: auto; display: flex; gap: 8px; align-items: center; }
+.nav { display: flex; gap: 4px; }
+.nav a {
+  font: 500 .95rem var(--display); color: var(--text-2); text-decoration: none; padding: 8px 14px;
+  border-bottom: 3px solid transparent;
+}
+.nav a[aria-current="page"] { color: var(--text); border-bottom-color: var(--xp); }
+main { max-width: 1120px; margin: 0 auto; padding: 24px 20px 48px; outline: none; }
+@media (max-width: 899px) {
+  .kopf { justify-content: space-between; }
+  .nav {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; justify-content: space-around; gap: 0;
+    height: calc(var(--nav-h) + env(safe-area-inset-bottom)); padding-bottom: env(safe-area-inset-bottom);
+    background: var(--tief); border-top: 1px solid var(--linie);
+  }
+  .nav a { flex: 1; display: grid; place-items: center; padding: 6px 2px; border-bottom: 0; border-top: 3px solid transparent; font-size: .85rem; }
+  .nav a[aria-current="page"] { border-top-color: var(--xp); border-bottom: 0; }
+  main { padding: 16px 16px calc(var(--nav-h) + 32px + env(safe-area-inset-bottom)); }
+}
+
+/* Paneele mit abgeschrägter Ecke – das Spielstand-Merkmal */
+.panel {
+  background: var(--flaeche); padding: 16px 18px; margin: 0 0 14px;
+  clip-path: polygon(0 0, calc(100% - var(--ecke)) 0, 100% var(--ecke), 100% 100%, var(--ecke) 100%, 0 calc(100% - var(--ecke)));
+}
+.panel > h3:first-child, .panel-kopf { font: 500 .9rem var(--display); color: var(--text-2); letter-spacing: .03em; margin: 0 0 8px; }
+.raster { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.raster > .panel { margin: 0; }
+@media (min-width: 900px) { .zwei { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; } }
+
+/* Knöpfe und Felder */
+button, .knopf {
+  font: 700 1rem var(--display); letter-spacing: .02em; color: var(--text); background: var(--flaeche-2);
+  border: 0; padding: 12px 18px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+button:focus-visible, .knopf:focus-visible { outline-offset: -4px; }
+button.haupt, .knopf.haupt { background: var(--xp); color: #062A33; }
+button.leise-knopf { background: transparent; color: var(--text-2); padding: 8px 10px; clip-path: none; }
+button[aria-busy="true"] { opacity: .75; cursor: progress; }
+.knoepfe { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0; }
+input[type="password"], input[type="text"], textarea {
+  font: 400 1.05rem var(--body); color: var(--text); background: var(--tief); border: 1px solid var(--linie);
+  padding: 12px 14px; width: 100%; border-radius: 0;
+}
+input:focus-visible, textarea:focus-visible { outline-offset: 0; border-color: var(--xp); }
+label { display: block; font-weight: 700; margin: 0 0 6px; }
+.haken { display: flex; align-items: center; gap: 10px; font-weight: 400; margin: 14px 0; }
+.haken input { width: 20px; height: 20px; accent-color: var(--xp); }
+.fehler { color: var(--gefahr); margin: 8px 0 0; }
+
+/* Passwort-Bildschirm */
+.tor { max-width: 420px; margin: 10vh auto 0; }
+.tor h1 { font-size: 2rem; }
+.tor .panel { padding: 24px; }
+
+/* Zustände */
+.geruest { display: grid; gap: 14px; }
+.geruest div { background: var(--flaeche); height: 96px; }
+.geruest .gross { height: 220px; }
+@media (prefers-reduced-motion: no-preference) {
+  .geruest div { animation: atmen 1.6s ease-in-out infinite; }
+  @keyframes atmen { 50% { opacity: .55; } }
+}
+.banner { display: flex; gap: 12px; align-items: flex-start; padding: 12px 16px; margin: 0 0 14px; background: var(--tief); border-left: 4px solid var(--level); }
+.banner.info { border-left-color: var(--xp); }
+.leer { padding: 28px; text-align: center; color: var(--text-2); border: 2px dashed var(--linie); }
+.meldung {
+  position: fixed; left: 50%; bottom: calc(var(--nav-h) + 16px + env(safe-area-inset-bottom)); transform: translateX(-50%);
+  background: var(--flaeche-2); color: var(--text); padding: 10px 16px; z-index: 20; max-width: calc(100% - 32px);
+}
+.meldung:empty { display: none; }
+@media (min-width: 900px) { .meldung { bottom: 24px; } }
+
+/* Abzeichen, Chips, Balken */
+.abzeichen { display: inline-block; font: 700 .85rem var(--display); background: var(--level); color: var(--level-tief); padding: 2px 9px; }
+.chip { display: inline-flex; align-items: center; gap: 4px; font: 700 .85rem var(--display); padding: 2px 8px; background: var(--tief); color: var(--text-2); }
+.chip.hoch { color: #7FE6C8; }
+.chip.runter { color: #FF9E92; }
+.balken { height: 12px; background: var(--tief); position: relative; overflow: hidden; }
+.balken > span { position: absolute; inset: 0 auto 0 0; background: var(--xp); }
+.balken::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 calc(10% - 2px), var(--tief) calc(10% - 2px) 10%); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
