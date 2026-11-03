@@ -1,0 +1,30 @@
+name: Zahlen holen
+
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: zahlen
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  abruf:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: TikTok-Zahlen holen
+        run: python -m cloud.tiktok_abruf
+        env:
+          ZENTRALE_SCHLUESSEL: ${{ secrets.ZENTRALE_SCHLUESSEL }}
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
