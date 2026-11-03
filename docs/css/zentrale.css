@@ -126,3 +126,39 @@ label { display: block; font-weight: 700; margin: 0 0 6px; }
 .balken > span { position: absolute; inset: 0 auto 0 0; background: var(--xp); }
 .balken::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 calc(10% - 2px), var(--tief) calc(10% - 2px) 10%); }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* Diagramme: Aktien-Verlauf, Kreise, Ring */
+.hoch { --farbe: var(--hoch); }
+.runter { --farbe: var(--runter); }
+.gleich { --farbe: var(--text-2); }
+.aktie-kopf { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.aktie-kopf h3 { margin: 0; font: 500 .9rem var(--display); color: var(--text-2); }
+.zeitraum { display: flex; gap: 4px; }
+.zeitraum button { font-size: .85rem; padding: 6px 10px; background: var(--tief); color: var(--text-2); clip-path: none; }
+.zeitraum button[aria-pressed="true"] { background: var(--xp); color: #062A33; }
+.aktie-wert { display: flex; align-items: baseline; gap: 12px; margin: 6px 0 2px; flex-wrap: wrap; }
+.aktie-wert .wert, .gross-zahl { font-size: clamp(2rem, 8vw, 2.6rem); font-weight: 700; line-height: 1.1; }
+.aktie-wert .chip { opacity: 0; transition: opacity .2s ease-out; }
+.aktie-wert .chip.da { opacity: 1; }
+.aktie-flaeche { position: relative; }
+.aktie svg { display: block; width: 100%; height: 180px; touch-action: pan-y; overflow: visible; }
+.verlauf .linie { fill: none; stroke: var(--farbe); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.verlauf .flaeche { stroke: none; fill: var(--farbe); fill-opacity: .1; }
+.kopf-punkt { fill: var(--farbe); stroke: var(--flaeche); stroke-width: 2; }
+.gitter line { stroke: var(--linie); stroke-width: 1; }
+.gitter text { fill: var(--text-2); font: 500 11px var(--display); }
+.fadenkreuz line { stroke: var(--text-2); stroke-dasharray: 3 3; }
+.tipp { position: absolute; top: -6px; background: var(--tief); padding: 6px 10px; font: 500 .85rem var(--display); pointer-events: none; white-space: nowrap; }
+details.tabelle summary { cursor: pointer; color: var(--text-2); margin-top: 8px; font-size: .9rem; }
+details.tabelle table { width: 100%; border-collapse: collapse; margin-top: 8px; font-variant-numeric: tabular-nums; }
+details.tabelle td, details.tabelle th { padding: 4px 6px; border-bottom: 1px solid var(--linie); text-align: left; font-weight: 400; }
+details.tabelle td:last-child, details.tabelle th:last-child { text-align: right; }
+.kreis { display: flex; gap: 18px; align-items: center; }
+.kreis svg { width: 120px; height: 120px; flex: none; }
+.kreis .spur { stroke: var(--tief); }
+.kreis .ring { stroke: var(--xp); }
+.ring-text { font: 700 17px var(--display); fill: var(--text); }
+.legende { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; font-size: .95rem; }
+.legende .farbe { display: inline-block; width: 10px; height: 10px; margin-right: 8px; }
+.legende b { font-family: var(--display); margin-left: 8px; }
+.klein { font-size: .9rem; }
