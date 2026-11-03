@@ -35,7 +35,7 @@ export function kreisDiagramm(el, { titel, teile, format = zahl, beschreibung = 
       <svg viewBox="0 0 100 100" role="img" aria-label="${esc(titel)}: ${esc(teile.map((t) => `${t.name} ${prozent(t.anteil)}`).join(", "))}">
         <g transform="rotate(-90 50 50)">${teile.map((t, i) => `<circle cx="50" cy="50" r="${R}" fill="none" stroke="${farbe(t, i)}" stroke-width="14"/>`).join("")}</g>
       </svg>
-      <ul class="legende">${teile.map((t, i) => `<li><span class="farbe" style="background:${farbe(t, i)}"></span>${esc(t.name)}<b>${prozent(t.anteil)}</b></li>`).join("")}</ul>
+      <ul class="legende">${teile.map((t, i) => `<li><svg class="farbe" viewBox="0 0 10 10" aria-hidden="true"><rect width="10" height="10" fill="${farbe(t, i)}"/></svg>${esc(t.name)}<b>${prozent(t.anteil)}</b></li>`).join("")}</ul>
     </div>${beschreibung ? `<p class="leise klein">${esc(beschreibung)}</p>` : ""}`;
   const kreise = [...el.querySelectorAll("circle")];
   aufbauen(el, (p) => {

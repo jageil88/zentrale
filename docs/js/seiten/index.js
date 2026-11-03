@@ -1,4 +1,11 @@
-// Seiten der Zentrale. Die TikTok-Seiten kommen aus eigenen Modulen.
+// Seiten der Zentrale: Startseite mit allen Spielständen, dazu die Seiten des TikTok-Spielstands.
+import { ansicht } from "../kennzahlen.js";
+import { spielstaende } from "./spielstaende.js";
+import { heute } from "./heute.js";
+import { zahlen } from "./zahlen.js";
+import { videos } from "./videos.js";
+import { system } from "./system.js";
+
 export const NAV = [
   { ziel: "", text: "Start" },
   { ziel: "tiktok/heute", text: "Heute" },
@@ -7,19 +14,12 @@ export const NAV = [
   { ziel: "tiktok/system", text: "System" },
 ];
 
-export const ansichtBauen = (roh) => roh;
-
-const platzhalter = {
-  zeichne(main, k) {
-    const anzahl = k.ansicht?.pc?.videos?.length ?? 0;
-    main.innerHTML = `<h1>Zentrale</h1><p class="leise">Daten geladen: ${anzahl} Videos.</p>`;
-  },
-};
+export const ansichtBauen = ansicht;
 
 export const SEITEN = {
-  "": platzhalter,
-  "tiktok/heute": platzhalter,
-  "tiktok/zahlen": platzhalter,
-  "tiktok/videos": platzhalter,
-  "tiktok/system": platzhalter,
+  "": spielstaende,
+  "tiktok/heute": heute,
+  "tiktok/zahlen": zahlen,
+  "tiktok/videos": videos,
+  "tiktok/system": system,
 };

@@ -162,3 +162,70 @@ details.tabelle td:last-child, details.tabelle th:last-child { text-align: right
 .legende .farbe { display: inline-block; width: 10px; height: 10px; margin-right: 8px; }
 .legende b { font-family: var(--display); margin-left: 8px; }
 .klein { font-size: .9rem; }
+
+/* Seiten */
+.abstand { margin-top: 12px; }
+.klein { font-size: .9rem; }
+.status { display: inline-block; font: 700 .85rem var(--display); padding: 3px 10px; background: var(--flaeche-2); color: var(--text); }
+.status.fertig { background: var(--xp); color: #062A33; }
+.status.entwurf { background: var(--level); color: var(--level-tief); }
+.status.hochgeladen { background: var(--hoch); color: #04261C; }
+.status.verworfen { background: var(--tief); color: var(--text-2); }
+
+.slots { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+.slot { display: block; color: var(--text); text-decoration: none; padding: 18px 20px; }
+.slot:hover { background: var(--flaeche-2); }
+.slot-kopf { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.slot h2 { margin: 0; font-size: 1.6rem; }
+.slot-unter { margin: 0 0 12px; }
+.slot-zahl { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 14px 0 4px; }
+.slot-zahl .wert { font-size: 2.2rem; font-weight: 700; }
+.slot.frei { padding: 18px 20px; border: 2px dashed var(--linie); color: var(--text-2); display: grid; align-content: center; min-height: 180px; }
+.slot.frei p { margin: 6px 0 0; }
+.mini { display: block; width: 100%; height: 40px; margin: 6px 0; }
+.mini path { fill: none; stroke: var(--xp); stroke-width: 2; stroke-linejoin: round; }
+.xp-zeile { display: flex; justify-content: space-between; gap: 10px; font-size: .9rem; color: var(--text-2); margin-bottom: 6px; }
+
+.zaehler-reihe { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+.zaehler { margin: 0; padding: 12px 14px; }
+.zaehler-wert { font-size: clamp(1.5rem, 6vw, 2.2rem); font-weight: 700; line-height: 1.1; margin-bottom: 6px; }
+@media (max-width: 420px) { .zaehler .chip { font-size: .75rem; } }
+
+.heute { display: grid; gap: 22px; grid-template-columns: minmax(240px, 340px) minmax(0, 1fr); align-items: start; }
+@media (max-width: 760px) { .heute { grid-template-columns: 1fr; } .spieler-rahmen { max-width: 320px; margin: 0 auto; width: 100%; } }
+.spieler-rahmen { aspect-ratio: 9 / 16; background: #000; border: 6px solid var(--flaeche-2); display: grid; }
+.spieler { width: 100%; height: 100%; display: block; background: #000; }
+.spieler-platz { display: grid; place-items: center; padding: 16px; text-align: center; }
+.titel { margin: 4px 0 10px; }
+.schritt { margin-top: 14px; }
+.schritt ol { margin: 0 0 8px 1.2em; padding: 0; }
+.schritt li { margin: 4px 0; }
+.beschreibung { white-space: pre-wrap; margin: 0; }
+textarea { resize: vertical; }
+button[aria-pressed="true"] { background: var(--xp); color: #062A33; }
+
+.karten { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr)); }
+.karte { padding: 0; margin: 0; display: grid; grid-template-rows: auto 1fr; }
+.karte .bild { aspect-ratio: 9 / 16; max-height: 260px; background: var(--tief); position: relative; overflow: hidden; display: grid; place-items: center; }
+.karte .bild img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.karte .nr { font: 700 2rem var(--display); color: var(--linie); }
+.karte .info { padding: 12px 14px 16px; }
+.karte h3 { margin: 8px 0 6px; font-size: 1rem; }
+.werte { margin: 0 0 6px; color: var(--text-2); font-size: .95rem; }
+.werte .wert { color: var(--text); font-weight: 700; }
+
+.erfolge { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); }
+.erfolg { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: var(--flaeche); }
+.erfolg .pokal { width: 26px; height: 26px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; }
+.erfolg.an { color: var(--text); box-shadow: inset 3px 0 0 var(--level); }
+.erfolg.an .pokal { color: var(--level); }
+.erfolg.aus { color: var(--text-2); opacity: .6; }
+@media (prefers-reduced-motion: no-preference) {
+  .erfolg.neu { animation: freigeschaltet .9s cubic-bezier(.2, 1.4, .4, 1) both; }
+  @keyframes freigeschaltet { 0% { transform: scale(.6); opacity: 0; } 60% { transform: scale(1.06); opacity: 1; } 100% { transform: scale(1); } }
+}
+
+table.liste { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; margin-top: 8px; }
+table.liste th, table.liste td { text-align: left; padding: 6px 6px; border-bottom: 1px solid var(--linie); font-weight: 400; }
+table.liste th { color: var(--text-2); }
+.legende svg.farbe { width: 10px; height: 10px; margin-right: 8px; vertical-align: -1px; }
