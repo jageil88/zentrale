@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+testdaten/
+.superpowers/
+node_modules/

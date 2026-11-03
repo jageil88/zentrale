@@ -1,0 +1,9 @@
+{
+  "passwort": "test-passwort-123",
+  "salz": "AAECAwQFBgcICQoLDA0ODw==",
+  "runden": 1000,
+  "schluessel": "kVthScR2m84DaFyQY0K1u2TT56n9qiAEUSf+pgMHwSE=",
+  "iv": "ZGVmZ2hpamtsbW5v",
+  "klartext": "{\"hallo\":\"welt\",\"zahl\":942}",
+  "daten": "WkVOMWRlZmdoaWprbG1ub4b61lRsfXN4w23fESN+1Dh74/hqZ5Ynrok5bWTrOOuS38VYxCqz8zdLnY8="
+}
