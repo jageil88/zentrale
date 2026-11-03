@@ -8,7 +8,7 @@ const ZEICHEN = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&
 export const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ZEICHEN[c]);
 
 export const zahl = (n) => (n === null || n === undefined || Number.isNaN(n) ? "–" : ganz.format(Math.round(n)));
-export const prozent = (x) => `${eineStelle.format(x * 100)} %`;
+export const prozent = (x) => `${Math.abs(x) >= 1 ? ganz.format(Math.round(x * 100)) : eineStelle.format(x * 100)} %`;
 export const geld = (usd) => `${new Intl.NumberFormat("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(usd)} $`;
 
 export function zeit(iso) {

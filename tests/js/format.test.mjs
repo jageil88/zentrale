@@ -11,6 +11,8 @@ test("deutsche Zahlen und Prozent", () => {
   assert.equal(zahl(1592), "1.592");
   assert.equal(zahl(null), "–");
   assert.equal(prozent(0.0672), "6,7 %");
+  assert.equal(prozent(198), "19.800 %");
+  assert.equal(prozent(0.5), "50,0 %");
 });
 
 test("Zeit und Tag", () => {

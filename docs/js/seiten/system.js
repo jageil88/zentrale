@@ -1,5 +1,6 @@
 // System: läuft alles? Automatik, TikTok, Budget, Datenstand – am PC dazu Einrichten und Zahlen holen.
 import { ringMeter } from "../diagramm-kreis.js";
+import { animationAn, animationSetzen } from "../aufbau.js";
 import { zeit, tag, vor, geld, esc } from "../format.js";
 import { banner, aktion } from "./teile.js";
 
@@ -48,6 +49,10 @@ export const system = {
           <p>Daten vom PC: ${a.stand.pc ? esc(vor(a.stand.pc, a.jetzt)) : "noch keine"}</p>
           ${pc ? '<button type="button" data-aktualisieren>Zahlen jetzt holen</button>' : ""}
         </section>
+        <section class="panel"><h3>Aufbau-Animation</h3>
+          <p>Die Verläufe und Kreise bauen sich beim Ansehen in 4 Sekunden auf. Antippen überspringt sie.</p>
+          <button type="button" data-animation>${animationAn() ? "Auf diesem Gerät ausschalten" : "Auf diesem Gerät einschalten"}</button>
+        </section>
       </div>
       <h2>Letzte Abrufe</h2>
       ${a.abrufe.length ? `<div class="panel"><table class="liste"><tr><th>Zeit</th><th>Abruf</th><th>Ergebnis</th></tr>${a.abrufe.map(abrufZeile).join("")}</table></div>` : '<div class="leer">Noch keine Abrufe.</div>'}
@@ -58,6 +63,12 @@ export const system = {
     ringMeter(main.querySelector("[data-budget]"), {
       titel: "Apify-Budget diesen Monat", wert: usd, max: grenze, text: geld(usd),
       unter: `von ${geld(grenze)}. Bei ${geld(grenze)} stoppt der Abruf bis zum Monatsersten, es kann nie Geld kosten.`,
+    });
+    main.querySelector("[data-animation]").addEventListener("click", (e) => {
+      const an = !animationAn();
+      animationSetzen(an);
+      e.currentTarget.textContent = an ? "Auf diesem Gerät ausschalten" : "Auf diesem Gerät einschalten";
+      k.meldung(an ? "Aufbau-Animation ist an" : "Aufbau-Animation ist aus");
     });
     if (!pc) return;
 
