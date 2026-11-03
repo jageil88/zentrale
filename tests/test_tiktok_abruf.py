@@ -139,5 +139,12 @@ class LaufTest(unittest.TestCase):
         self.assertEqual(self.git.kopf(ta.BRANCH_CLOUD), kopf)
 
 
+class MainTest(unittest.TestCase):
+    def test_without_key_is_not_a_failure(self):
+        from unittest import mock
+        with mock.patch.object(ta.krypto, "schluessel_aus_umgebung", return_value=None):
+            self.assertEqual(ta.main(), 0)  # vor dem Einrichten: nichts tun, aber keinen roten Lauf erzeugen
+
+
 if __name__ == "__main__":
     unittest.main()

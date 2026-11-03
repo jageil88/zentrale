@@ -137,8 +137,8 @@ def lauf(jetzt_utc: datetime, schluessel: bytes, apify_token, git: Git, scraper=
 def main() -> int:
     schluessel = krypto.schluessel_aus_umgebung()
     if not schluessel:
-        print("ZENTRALE_SCHLUESSEL fehlt – erst am PC einrichten.")
-        return 1
+        print("Noch nicht eingerichtet (ZENTRALE_SCHLUESSEL fehlt) – nichts zu tun.")
+        return 0
     repo = os.environ.get("GITHUB_REPOSITORY", "jageil88/zentrale")
     zugang = os.environ.get("GITHUB_TOKEN")
     remote = f"https://x-access-token:{zugang}@github.com/{repo}.git" if zugang else f"https://github.com/{repo}.git"
